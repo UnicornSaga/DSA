@@ -6,9 +6,7 @@ public class Board {
     private int emptyRow;
     private int emptyCol;
 
-    /* Constructor */
     public Board(int[][] blocks) {
-        // Assume blocks is a square matrix
         n = blocks.length;
         board = new int[n][n];
         for (int i = 0; i < n; i++) {
@@ -22,15 +20,10 @@ public class Board {
         }
     }
 
-    /* Returns the size of the board. */
     public int dimension() {
         return n;
     }
 
-    /* Returns the hamming distance of the board to a finished board.
-     * The hamming distance of a single element is 1 if the element isn't in the
-     * right place and 0 if it is.
-     */
     public int hamming() {
         int block;
         int total = 0;
@@ -44,10 +37,6 @@ public class Board {
         return total;
     }
 
-    /* Returns the manhattan distance of the board to a finished board.
-     * The manhattan distance of a single element is the distance in
-     * rows + columns of the element to its final position.
-     */
     public int manhattan() {
         int block;
         int total = 0;
@@ -76,8 +65,6 @@ public class Board {
         return twinBoard;
     }
 
-    /* Returns true if the elements of two board matrices are equal and false
-     * otherwise. */
     public boolean equals(Object y) {
         if (y == this) return true;
         if (y == null) return false;
@@ -93,32 +80,24 @@ public class Board {
         return true;
     }
 
-    /* Returns a queue of all the neighboring boards (possible configurations after
-     * 1 valid move. A valid move is a move that switches an empty block with an
-     * adjacent block. */
     public Iterable<Board> neighbors() {
-        // Queue is from algs4 library
         Queue<Board> q = new Queue<Board>();
         Board copy;
-        // Swap with upper block (row-1)
         if (emptyRow > 0) {
             copy = new Board(this.copy());
             copy.swap(emptyRow, emptyCol, emptyRow-1, emptyCol);
             q.enqueue(copy);
         }
-        // Swap with lower block (row+1)
         if (emptyRow < n-1) {
             copy = new Board(this.copy());
             copy.swap(emptyRow, emptyCol, emptyRow+1, emptyCol);
             q.enqueue(copy);
         }
-        // Swap with left block (col-1)
         if (emptyCol > 0) {
             copy = new Board(this.copy());
             copy.swap(emptyRow, emptyCol, emptyRow, emptyCol-1);
             q.enqueue(copy);
         }
-        // Swap with right block (col+1)
         if (emptyCol < n-1) {
             copy = new Board(this.copy());
             copy.swap(emptyRow, emptyCol, emptyRow, emptyCol+1);
@@ -153,7 +132,6 @@ public class Board {
         return Math.abs(goalRow - i) + Math.abs(goalCol - j);
     }
 
-    /* Returns a copy of the board matrix. */
     private int[][] copy() {
         int[][] copy = new int[n][n];
         for (int i = 0; i < n; i++)

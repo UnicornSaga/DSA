@@ -6,6 +6,10 @@
       <sourceFolder url="file://$MODULE_DIR$/HelloWorld" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Percolation" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/StackAndQueue" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/8Puzzle" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/CollinearPoints" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Kd Tree" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/KdTree" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

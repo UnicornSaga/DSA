@@ -4,14 +4,9 @@ import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Solver {
-    /* Whether the puzzle is solvable */
     private boolean solvable;
-    /* Solution. null if the input board is not solvable. */
     private SearchNode finalBoard;
 
-    /* Search node class. Stores the board state, the number of moves to
-     * get to this state, and the previous Search node that led to this
-     * board state. */
     private class SearchNode implements Comparable<SearchNode> {
         private final Board board;
         private final int moves;
@@ -23,30 +18,13 @@ public class Solver {
             prev = sn;
         }
 
-        /* Implements the priority function:
-         * PF = distance + moves to get to the current board state
-         * Uncomment the appropriate lines to use either hamming or manhattan
-         * distances. */
         public int compareTo(SearchNode other) {
-            // int thisHamming = this.board.hamming() + this.moves;
-            // int otherHamming = this.board.hamming() + other.moves;
-            // return thisHamming - otherHamming;
             int thisManhattan = this.board.manhattan() + this.moves;
             int otherManhattan = other.board.manhattan() + other.moves;
             return thisManhattan - otherManhattan;
         }
     }
 
-    /* Solves a given input board:
-     * Starting with the initial configuration and a twin configuration (with two
-     * adjacent row elements swapped), simultaneously update the boards as follows:
-     * If the current board (initial configuration) is a solution, store that search
-     * node. The input board is solvable.
-     * If the current board (twin configuration) is a solution, the input board is
-     * not solvable.
-     * Otherwise, look at all neighboring configurations and put them in the priority
-     * queue.
-     */
     public Solver(Board initial) {
         MinPQ<SearchNode> initPQ = new MinPQ<SearchNode>();
         MinPQ<SearchNode> twinPQ = new MinPQ<SearchNode>();
@@ -81,22 +59,16 @@ public class Solver {
         }
     }
 
-    /* Returns whether or not the input board was solvable. */
     public boolean isSolvable() {
         return solvable;
     }
 
-    /* Returns the number of moves to solve the input board or -1 if the board wasn't
-     * solvable. */
     public int moves() {
         if (this.solvable)
             return finalBoard.moves;
         return -1;
     }
 
-    /* Returns a stack of the board configurations from the input board to the final
-     * (goal) configuration. The bottom of the stack should be the input board and
-     * the top of the stack should be the solved board. */
     public Iterable<Board> solution() {
         if (this.solvable) {
             // Stack is from algs4 library
@@ -111,10 +83,6 @@ public class Solver {
         return null;
     }
 
-    /* Takes in as input a file with a board state, attempts to solve that board
-     * state, then outputs the number of moves and the configurations leading to the
-     * solution of the input board is solvable.
-     */
     public static void main(String[] args) {
         // create initial board from file
         int n = StdIn.readInt();
@@ -124,10 +92,8 @@ public class Solver {
                 blocks[i][j] = StdIn.readInt();
         Board initial = new Board(blocks);
 
-        // solve the puzzle
         Solver solver = new Solver(initial);
 
-        // print solution to standard output
         if (!solver.isSolvable())
             StdOut.println("No solution possible");
         else {
