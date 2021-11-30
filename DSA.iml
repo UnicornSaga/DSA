@@ -10,8 +10,11 @@
       <sourceFolder url="file://$MODULE_DIR$/CollinearPoints" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Kd Tree" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/KdTree" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Seam Carving" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Wordnet" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="algs4" level="project" />
   </component>
 </module>

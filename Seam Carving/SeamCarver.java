@@ -13,7 +13,7 @@ public class SeamCarver {
     public SeamCarver(Picture picture) {
 
         if (null == picture)
-            throw new NullPointerException("input picture is null");
+            throw new IllegalArgumentException();
         currHeight = picture.height();
         currWidth = picture.width();
 
@@ -90,9 +90,9 @@ public class SeamCarver {
     private void validate(int col, int row) {
 
         if (col < 0 || col >= currWidth)
-            throw new IllegalArgumentException("col " + col +" is not in bounds");
+            throw new IllegalArgumentException();
         if (row < 0 || row >= currHeight)
-            throw new IllegalArgumentException("row " + row +" is not in bounds");
+            throw new IllegalArgumentException();
     }
 
     public int[] findHorizontalSeam() {
@@ -340,22 +340,22 @@ public class SeamCarver {
     private void checkInputSeam(int[] seam, boolean direction) {
 
         if (null == seam)
-            throw new IllegalArgumentException("input seam is null");
+            throw new IllegalArgumentException();
         if (direction == V) {
 
             if (seam.length != currHeight || seam.length < 1)
-                throw new IllegalArgumentException("input seam length is not same as current height");
+                throw new IllegalArgumentException();
             for (Integer i : seam)
                 if (i < 0 || i >= currWidth)
-                    throw new IllegalArgumentException("input seam contanis out bounds argument" + i);
+                    throw new IllegalArgumentException();
         }
         if (direction == H) {
 
             if (seam.length != currWidth || seam.length < 1)
-                throw new IllegalArgumentException("input seam length is not same as current width");
+                throw new IllegalArgumentException();
             for (Integer i : seam)
                 if (i < 0 || i >= currHeight)
-                    throw new IllegalArgumentException("input seam contanis out bounds argument" + i);
+                    throw new IllegalArgumentException();
         }
 
         int pre;
@@ -363,18 +363,8 @@ public class SeamCarver {
         for (Integer i : seam) {
 
             if (Math.abs(i - pre) > 1)
-                throw new IllegalArgumentException("input seam is not a true seam" + i + pre);
+                throw new IllegalArgumentException();
             pre = i;
         }
-    }
-
-    //  unit testing (optional)
-    public static void main(String[] args) {
-
-        Picture pic = new Picture("/home/mayuri/Desktop/seam/7x3.png");
-        SeamCarver sc = new SeamCarver(pic);
-        int[] seam = {
-                5,6,4};
-        sc.removeVerticalSeam(seam);
     }
 }
